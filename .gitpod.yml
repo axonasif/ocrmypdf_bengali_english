@@ -3,4 +3,11 @@ image: gitpod/workspace-full:latest
 
 # List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
 tasks:
-  - init: docker build -t ocrmypdf .
+  - name: Build ocrmypdf container
+    init: docker build -t ocrmypdf .
+    
+  - name: Install pdftotext (and more)
+    command: |
+      sudo apt-get update
+      sudo apt-get install -yq poppler-utils # for pdftotext
+      exit 0
